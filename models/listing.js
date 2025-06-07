@@ -10,6 +10,10 @@ const listingSchema = new Schema({
     required: true,
   },
 
+  categories:{
+type:String,
+  },
+
   description: String,
   
   image: {

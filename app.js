@@ -33,6 +33,7 @@ const user = require("./models/user.js");
 
 // const MONGO_URL="mongodb://127.0.0.1:27017/homeaway";
 
+
 const dburl=process.env.ATLASDB_URL;
 
 
@@ -60,6 +61,7 @@ app.use(express.static(path.join(__dirname,"/public")));
 
 const store=MongoStore.create({
     mongoUrl:dburl,
+    //   mongoUrl: MONGO_URL,
     crypto:{
         secret: process.env.SECRET,
     },
@@ -111,6 +113,7 @@ app.use("/listings/:id/reviews",reviewRouter);
 app.use("/",userRouter);
 
 
+
 app.all("*",(req,res,next)=>{
 next(new ExpressError(404,"page not found! "));
 });
@@ -118,8 +121,7 @@ next(new ExpressError(404,"page not found! "));
 app.use((err,req,res,next)=>{
   let { statusCode,message}=err;
   res.render("error.ejs",{message});
-  // res.status(statusCode).send(message);
-  // res.send("somthing went wrong!");
+  
 });
 
 app.listen(8080, ()=>{

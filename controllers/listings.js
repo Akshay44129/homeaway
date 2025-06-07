@@ -13,6 +13,41 @@ module.exports.index =async (req, res) => {
     res.render("listings/new.ejs");
   };
 
+//   module.exports.index = async (req, res) => {
+//   const { category } = req.query;
+
+//   let filter = {};
+//   if (category && category !== "All") {
+//     filter.category = category;
+//   }
+
+//   const allListings = await Listing.find(filter);
+//   res.render("listings/index", { allListings, selectedCategory: category || "All" });
+// };
+
+
+module.exports.index = async (req, res) => {
+  let { category } = req.query;
+
+  // Normalize spaces or "+" to "-" just in case
+  if (category) {
+    category = category.replace(/\s+/g, "-").replace(/\++/g, "-");
+  }
+
+  let filter = {};
+  if (category && category !== "All") {
+    filter.categories = category;
+  }
+
+  const allListings = await Listing.find(filter);
+  res.render("listings/index", {
+    allListings,
+    selectedCategory: category || "All"
+  });
+};
+
+
+
 
   module.exports.showListing=async (req, res) => {
     let { id } = req.params;
