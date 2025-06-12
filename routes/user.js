@@ -4,6 +4,8 @@ const passport = require("passport");
 const router=express.Router();
 const User =require("../models/user.js");
 const { saveRedirectUrl } = require("../middleware.js");
+const { renderUserInfo } = require("../controllers/userController");
+const { isLoggedIn } = require("../middleware");
 
 const userController=require("../controllers/users.js");
 
@@ -25,5 +27,8 @@ router.route("/login")
 
 
 router.get("/logout",userController.logout);
+
+
+router.get("/info", isLoggedIn, renderUserInfo);
 
 module.exports=router;

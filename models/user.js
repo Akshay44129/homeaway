@@ -1,12 +1,14 @@
-const mongoose =require("mongoose");
-const Schema =mongoose.Schema;
-const passportLocalMongoose =require("passport-local-mongoose");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const passportLocalMongoose = require("passport-local-mongoose");
 
-const userSchema = new Schema ({
-    email :{
-        type:String,
-        require:true
+const userSchema = new Schema({
+    email: {
+        type: String,
+        required: true
     }
+}, {
+    timestamps: true // ✅ Add this line
 });
 
 userSchema.plugin(passportLocalMongoose);

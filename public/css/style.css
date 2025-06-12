@@ -163,3 +163,14 @@ body {
         align-items: center;
     }
 }
+.user-icon{
+    background-color: #ffffff;
+    color: #fe424d;
+    margin: 10px;
+    font-weight: 200;
+   
+}
+.user-icon:hover{
+    cursor: pointer;
+
+}

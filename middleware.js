@@ -5,7 +5,7 @@ const { listingSchema , reviewSchema}=require("./schema.js");
 
 
 module.exports.isLoggedIn =(req, res , next)=>{
-  console.log(req.path, "..", req.originalUrl);
+  // console.log(req.path, "..", req.originalUrl);
     if( !req.isAuthenticated()){
 
       req.session.redirectUrl =req.originalUrl;
